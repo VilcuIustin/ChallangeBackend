@@ -25,5 +25,9 @@ namespace ChallangeBackend.Controllers
         [HttpPost("paginated")]
         public async Task<ActionResult<BaseResponse<List<MinimalProductResponse>>>> GetProductsPaginatedAsync(ProductsPaginatedReques pagination)
             => await _productsService.GetProductsPaginatedAsync(pagination);
+
+        [HttpGet("all")]
+        public async Task<ActionResult<BaseResponse<List<MinimalProductResponse>>>> GetAllProductsAsync()
+            => await GetProductsPaginatedAsync(new ProductsPaginatedReques { Size = int.MaxValue });
     }
 }
