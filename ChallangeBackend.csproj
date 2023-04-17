@@ -12,15 +12,19 @@
     <Compile Remove="BusinessLayer\**" />
     <Compile Remove="Common\**" />
     <Compile Remove="DataLayer\**" />
+    <Compile Remove="UnitTests\**" />
     <Content Remove="BusinessLayer\**" />
     <Content Remove="Common\**" />
     <Content Remove="DataLayer\**" />
+    <Content Remove="UnitTests\**" />
     <EmbeddedResource Remove="BusinessLayer\**" />
     <EmbeddedResource Remove="Common\**" />
     <EmbeddedResource Remove="DataLayer\**" />
+    <EmbeddedResource Remove="UnitTests\**" />
     <None Remove="BusinessLayer\**" />
     <None Remove="Common\**" />
     <None Remove="DataLayer\**" />
+    <None Remove="UnitTests\**" />
   </ItemGroup>
 
   <ItemGroup>
