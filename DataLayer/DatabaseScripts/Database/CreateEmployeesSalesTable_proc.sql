@@ -1,0 +1,13 @@
+CREATE OR ALTER PROC CreateEmployeesSales
+AS
+BEGIN
+    CREATE TABLE EmployeesSales
+    (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        UserId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Users(Id),
+        ProductId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Products(Id),
+        DateId SMALLINT NOT NULL FOREIGN KEY REFERENCES Dates(Id),
+        ProductsSold INT NOT NULL CHECK (ProductsSold >= 0)
+    )
+
+END

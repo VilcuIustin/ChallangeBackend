@@ -29,7 +29,7 @@ namespace UnitTests
 
             _unitOfWorkMock.Setup(u => u.ProductsRepository.CheckProductExistById(request.ProductId))
                 .ReturnsAsync(true);
-            _unitOfWorkMock.Setup(u => u.userRepository.CheckUserExistByIdAsync(request.EmployeeId))
+            _unitOfWorkMock.Setup(u => u.UserRepository.CheckUserExistByIdAsync(request.EmployeeId))
                 .ReturnsAsync(true);
             _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.CreateEmployeeSales(It.IsAny<CreateEmployeeSale>()));
 
@@ -55,7 +55,7 @@ namespace UnitTests
 
             _unitOfWorkMock.Setup(u => u.ProductsRepository.CheckProductExistById(request.ProductId))
                 .ReturnsAsync(true);
-            _unitOfWorkMock.Setup(u => u.userRepository.CheckUserExistByIdAsync(request.EmployeeId))
+            _unitOfWorkMock.Setup(u => u.UserRepository.CheckUserExistByIdAsync(request.EmployeeId))
                 .ReturnsAsync(true);
             _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.CreateEmployeeSales(It.IsAny<CreateEmployeeSale>()));
 
@@ -82,7 +82,7 @@ namespace UnitTests
 
             _unitOfWorkMock.Setup(u => u.ProductsRepository.CheckProductExistById(request.ProductId))
                 .ReturnsAsync(false);
-            _unitOfWorkMock.Setup(u => u.userRepository.CheckUserExistByIdAsync(request.EmployeeId))
+            _unitOfWorkMock.Setup(u => u.UserRepository.CheckUserExistByIdAsync(request.EmployeeId))
                 .ReturnsAsync(true);
             _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.CreateEmployeeSales(It.IsAny<CreateEmployeeSale>()));
 
@@ -109,7 +109,7 @@ namespace UnitTests
 
             _unitOfWorkMock.Setup(u => u.ProductsRepository.CheckProductExistById(request.ProductId))
                 .ReturnsAsync(true);
-            _unitOfWorkMock.Setup(u => u.userRepository.CheckUserExistByIdAsync(request.EmployeeId))
+            _unitOfWorkMock.Setup(u => u.UserRepository.CheckUserExistByIdAsync(request.EmployeeId))
                 .ReturnsAsync(false);
             _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.CreateEmployeeSales(It.IsAny<CreateEmployeeSale>()));
 

@@ -26,7 +26,7 @@ namespace BusinessLayer.Services
             try
             {
                 registerData.Email = registerData.Email.Trim().ToLower();
-                var userExists = await _unitOfWork.userRepository.EmailExistsAsync(registerData.Email);
+                var userExists = await _unitOfWork.UserRepository.EmailExistsAsync(registerData.Email);
                 if (userExists)
                     return new BaseResponse<bool>
                     {
@@ -50,7 +50,7 @@ namespace BusinessLayer.Services
                     RoleId = roleId,
                 };
 
-                await _unitOfWork.userRepository.CreateUser(user);
+                await _unitOfWork.UserRepository.CreateUser(user);
                 await _unitOfWork.UserRoleRepository.CreateUserRole(userRole);
 
                 await _unitOfWork.SaveChangesAsync();
@@ -65,7 +65,7 @@ namespace BusinessLayer.Services
 
         public async Task<BaseResponse<LoginResponse>> LoginAsync(LoginRequest loginData)
         {
-            var userData = await _unitOfWork.userRepository.GetUserForLogin(loginData.Email);
+            var userData = await _unitOfWork.UserRepository.GetUserForLogin(loginData.Email);
 
             if (userData == null)
             {

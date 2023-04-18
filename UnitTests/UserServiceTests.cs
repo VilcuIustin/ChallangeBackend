@@ -29,7 +29,7 @@ namespace UnitTests
                 Role = RoleType.Employee
             };
 
-            _unitOfWorkMock.Setup(u => u.userRepository.EmailExistsAsync(request.Email))
+            _unitOfWorkMock.Setup(u => u.UserRepository.EmailExistsAsync(request.Email))
                 .ReturnsAsync(false);
             _unitOfWorkMock.Setup(u => u.RolesRepository.GetRoleIdByName(Enum.GetName(request.Role)))
                 .ReturnsAsync(Guid.NewGuid());
@@ -51,7 +51,7 @@ namespace UnitTests
                 Role = RoleType.Employee
             };
 
-            _unitOfWorkMock.Setup(u => u.userRepository.EmailExistsAsync(request.Email))
+            _unitOfWorkMock.Setup(u => u.UserRepository.EmailExistsAsync(request.Email))
                 .ReturnsAsync(true);
 
             _unitOfWorkMock.Setup(u => u.RolesRepository.GetRoleIdByName(Enum.GetName(request.Role)))
@@ -74,7 +74,7 @@ namespace UnitTests
                 Password = "password",
             };
 
-            _unitOfWorkMock.Setup(u => u.userRepository.GetUserForLogin(request.Email))
+            _unitOfWorkMock.Setup(u => u.UserRepository.GetUserForLogin(request.Email))
                 .ReturnsAsync(new UserDetailsLogin
                 {
                     Id = Guid.NewGuid(),
@@ -98,7 +98,7 @@ namespace UnitTests
                 Password = "password",
             };
 
-            _unitOfWorkMock.Setup(u => u.userRepository.GetUserForLogin(request.Email));
+            _unitOfWorkMock.Setup(u => u.UserRepository.GetUserForLogin(request.Email));
 
             var response = await _sut.LoginAsync(request);
 
@@ -116,7 +116,7 @@ namespace UnitTests
                 Password = "password",
             };
 
-            _unitOfWorkMock.Setup(u => u.userRepository.GetUserForLogin(request.Email))
+            _unitOfWorkMock.Setup(u => u.UserRepository.GetUserForLogin(request.Email))
                  .ReturnsAsync(new UserDetailsLogin
                  {
                      Id = Guid.NewGuid(),
@@ -141,7 +141,7 @@ namespace UnitTests
                 Password = "password",
             };
 
-            _unitOfWorkMock.Setup(u => u.userRepository.GetUserForLogin(request.Email))
+            _unitOfWorkMock.Setup(u => u.UserRepository.GetUserForLogin(request.Email))
                  .ReturnsAsync(new UserDetailsLogin
                  {
                      Id = Guid.NewGuid(),

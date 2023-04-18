@@ -12,7 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseScripts\" />
+    <Folder Include="DatabaseScripts\Database\" />
+    <Folder Include="DatabaseScripts\StoredProcedures\" />
   </ItemGroup>
 
   <ItemGroup>

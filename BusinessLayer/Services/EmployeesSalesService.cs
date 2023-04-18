@@ -36,7 +36,7 @@ namespace BusinessLayer.Services
                     };
                 }
 
-                var employeeExists = await _unitOfWork.userRepository.CheckUserExistByIdAsync(salesData.EmployeeId);
+                var employeeExists = await _unitOfWork.UserRepository.CheckUserExistByIdAsync(salesData.EmployeeId);
                 if (!employeeExists)
                 {
                     return new BaseResponse<bool>

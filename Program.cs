@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddJWTConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration();
-builder.Services.AddDataLayer();
+builder.Services.AddDataLayer(builder.Configuration);
 builder.Services.AddBusinessLayer();
 var app = builder.Build();
 

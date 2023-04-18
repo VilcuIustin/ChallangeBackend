@@ -1,0 +1,14 @@
+CREATE OR ALTER PROC CreateDateTable
+AS
+BEGIN
+	CREATE TABLE Dates
+	(
+		Id SMALLINT PRIMARY KEY,
+		Year SMALLINT NOT NULL,
+		Month SMALLINT NOT NULL
+	)
+
+	CREATE UNIQUE INDEX UQ_Date_Year_Month
+	ON Dates (Year, Month);
+
+END

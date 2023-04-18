@@ -7,9 +7,10 @@ namespace DataLayer
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IConfiguration _configuration;
-        private readonly SqlConnection _connection;
-        private readonly SqlTransaction _transaction;
-        public IUserRepository userRepository { get; }
+        public readonly SqlConnection _connection;
+        public SqlTransaction _transaction;
+        public SqlTransaction transaction => _transaction ?? StartTransaction();
+        public IUserRepository UserRepository { get; }
         public IUserRoleRepository UserRoleRepository { get; }
         public IRolesRepository RolesRepository { get; }
         public IProductsRepository ProductsRepository { get; }
@@ -23,23 +24,26 @@ namespace DataLayer
             _configuration = configuration;
             _connection = new SqlConnection(_configuration.GetConnectionString("Database"));
             _connection.Open();
-            _transaction = StartTransaction();
-            userRepository = new UserRepository(_transaction);
-            UserRoleRepository = new UserRoleRepository(_transaction);
-            RolesRepository = new RolesRepository(_transaction);
-            ProductsRepository = new ProductsRepository(_transaction);
-            ProductRewardsRepository = new ProductRewardRepository(_transaction);
-            DateRepository = new DateRepository(_transaction);
-            EmployeeSalesRepository = new EmployeeSalesRepository(_transaction);
-            EmployeesRepository = new EmployeesRepository(_transaction);
-            RemunerationRepository = new RemunerationRepository(_transaction);
+            UserRepository = new UserRepository(transaction);
+            UserRoleRepository = new UserRoleRepository(transaction);
+            RolesRepository = new RolesRepository(transaction);
+            ProductsRepository = new ProductsRepository(transaction);
+            ProductRewardsRepository = new ProductRewardRepository(transaction);
+            DateRepository = new DateRepository(transaction);
+            EmployeeSalesRepository = new EmployeeSalesRepository(transaction);
+            EmployeesRepository = new EmployeesRepository(transaction);
+            RemunerationRepository = new RemunerationRepository(transaction);
         }
 
-        public Task SaveChangesAsync() => _transaction.CommitAsync();
+        public Task SaveChangesAsync() => transaction.CommitAsync();
 
-        public SqlTransaction StartTransaction() => _connection.BeginTransaction();
+        public SqlTransaction StartTransaction()
+        {
+            _transaction = _connection.BeginTransaction();
+            return _transaction;
+        }
 
         public Task RollbackAsync()
-            => _transaction.RollbackAsync();
+            => transaction.RollbackAsync();
     }
 }

@@ -5,7 +5,7 @@ namespace DataLayer
 {
     public interface IUnitOfWork
     {
-        public IUserRepository userRepository { get; }
+        public IUserRepository UserRepository { get; }
         public IUserRoleRepository UserRoleRepository { get; }
         public IRolesRepository RolesRepository { get; }
         public IProductsRepository ProductsRepository { get; }

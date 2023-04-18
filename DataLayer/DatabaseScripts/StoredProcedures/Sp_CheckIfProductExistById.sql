@@ -1,0 +1,8 @@
+CREATE OR ALTER PROC Sp_CheckIfProductExistById
+    @Id UNIQUEIDENTIFIER
+AS
+BEGIN
+    SELECT 1
+    FROM Products p
+    WHERE p.Id = @Id
+END
