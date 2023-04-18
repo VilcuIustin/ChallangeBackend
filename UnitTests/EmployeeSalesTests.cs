@@ -176,5 +176,46 @@ namespace UnitTests
 
         }
 
+        [Fact]
+        public async Task UpdateEmployeesSalesAsync_ReturnSalesUpdated()
+        {
+            var request = new UpdateEmployeeSalesRequest
+            {
+                Id = Guid.NewGuid(),
+                ProductsSold = 50
+            };
+
+            _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.GetEmployeesSalesByIdAsync(request.Id))
+                .ReturnsAsync(true);
+
+            _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.UpdateEmployeeSalesAsync(request.Id, request.ProductsSold));
+
+            var result = await _sut.UpdateEmployeesSalesAsync(request);
+
+            Assert.True(result.Content);
+            Assert.Null(result.Error);
+        }
+
+        [Fact]
+        public async Task UpdateEmployeesSalesAsync_ReturnSaleNotFound()
+        {
+            var request = new UpdateEmployeeSalesRequest
+            {
+                Id = Guid.NewGuid(),
+                ProductsSold = 50
+            };
+
+            _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.GetEmployeesSalesByIdAsync(request.Id))
+                .ReturnsAsync(false);
+
+            _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.UpdateEmployeeSalesAsync(request.Id, request.ProductsSold));
+
+            var result = await _sut.UpdateEmployeesSalesAsync(request);
+
+            Assert.False(result.Content);
+            Assert.NotNull(result.Error);
+            Assert.Contains("Sale does not exist", result.Error);
+        }
+
     }
 }
