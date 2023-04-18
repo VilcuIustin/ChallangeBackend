@@ -23,12 +23,15 @@ namespace DataLayer.Repositories
 
         public async Task<List<EmployeeSaleResponse>> GetEmployeesSalesByDateAsync(Guid employeeId, int dateId)
          => (await _connection.QueryAsync<EmployeeSaleResponse>(StoredProcedures.GetEmployeesSalesByDate,
-                new {employeeId, dateId}, transaction: _transaction, commandType: CommandType.StoredProcedure))
+                new { employeeId, dateId }, transaction: _transaction, commandType: CommandType.StoredProcedure))
             .ToList();
 
-        public Task UpdateEmployeeSales()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<bool> GetEmployeesSalesByIdAsync(Guid id)
+        => _connection.QueryFirstOrDefaultAsync<bool>(StoredProcedures.GetEmployeesSalesById, new { id },
+                transaction: _transaction, commandType: CommandType.StoredProcedure);
+
+        public Task UpdateEmployeeSalesAsync(Guid id, int productsSold)
+        => _connection.ExecuteAsync(StoredProcedures.UpdateEmployeesSales, new {id, productsSold},
+                transaction: _transaction, commandType: CommandType.StoredProcedure);
     }
 }

@@ -12,6 +12,7 @@ namespace DataLayer.Repositories
     {
         public Task CreateEmployeeSales(CreateEmployeeSale employeeSales);
         Task<List<EmployeeSaleResponse>> GetEmployeesSalesByDateAsync(Guid employeeId, int dateId);
-        public Task UpdateEmployeeSales();
+        Task<bool> GetEmployeesSalesByIdAsync(Guid id);
+        Task UpdateEmployeeSalesAsync(Guid id, int productsSold);
     }
 }

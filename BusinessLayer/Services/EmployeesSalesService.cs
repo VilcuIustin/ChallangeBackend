@@ -104,8 +104,19 @@ namespace BusinessLayer.Services
         {
             try
             {
-                throw new NotImplementedException();
-            }catch (Exception ex)
+                var salesExist = await _unitOfWork.EmployeeSalesRepository.GetEmployeesSalesByIdAsync(saleDetails.Id);
+
+                if(!salesExist)
+                    return new()
+                    {
+                        Error = "Sale does not exist"
+                    };
+
+                await _unitOfWork.EmployeeSalesRepository.UpdateEmployeeSalesAsync(saleDetails.Id, saleDetails.ProductsSold);
+                await _unitOfWork.SaveChangesAsync();
+                return new(true);
+            }
+            catch (Exception ex)
             {
                 await _unitOfWork.RollbackAsync();
                 return new()

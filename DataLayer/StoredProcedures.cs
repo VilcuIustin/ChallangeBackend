@@ -28,5 +28,7 @@ namespace DataLayer
         internal static string ProductRewardsExistsById => "ProductRewardsExistsById";
         internal static string UpdateProductReward => "UpdateProductReward";
         internal static string CalculateRewards => "CalculateRewards";
+        internal static string GetEmployeesSalesById => "GetEmployeesSalesById";
+        internal static string UpdateEmployeesSales => "UpdateEmployeesSales";
     }
 }
