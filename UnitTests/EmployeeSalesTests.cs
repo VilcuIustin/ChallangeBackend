@@ -32,7 +32,7 @@ namespace UnitTests
             _unitOfWorkMock.Setup(u => u.userRepository.CheckUserExistByIdAsync(request.EmployeeId))
                 .ReturnsAsync(true);
             _unitOfWorkMock.Setup(u => u.EmployeeSalesRepository.CreateEmployeeSales(It.IsAny<CreateEmployeeSale>()));
-            
+
             var response = await _sut.CreateEmployeeSaleAsync(request);
 
             Assert.True(response.Content);
@@ -170,7 +170,7 @@ namespace UnitTests
 
             var response = await _sut.GetEmployeesSalesByDateAsync(employeeId, month, year);
 
-            
+
             Assert.Null(response.Content);
             Assert.Contains("Date not found", response.Error);
 

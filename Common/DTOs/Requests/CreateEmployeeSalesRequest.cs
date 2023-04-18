@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Common.DTOs.Requests
 {
@@ -11,7 +6,7 @@ namespace Common.DTOs.Requests
     {
         public Guid EmployeeId { get; set; }
         public Guid ProductId { get; set; }
-        [Range(0,int.MaxValue)]
+        [Range(0, int.MaxValue)]
         public int ProductsSold { get; set; }
         [Range(1, 12)]
         public int Month { get; set; }

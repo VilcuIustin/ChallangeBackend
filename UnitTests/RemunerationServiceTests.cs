@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
     public class RemunerationServiceTests
     {
@@ -14,7 +8,7 @@ namespace UnitTests
         public RemunerationServiceTests()
         {
             _unitOfWorkMock = new Mock<IUnitOfWork>();
-            _sut = new RemunerationService( _unitOfWorkMock.Object );
+            _sut = new RemunerationService(_unitOfWorkMock.Object);
         }
 
         [Fact]

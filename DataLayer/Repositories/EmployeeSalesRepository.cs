@@ -1,13 +1,8 @@
 ﻿using Common.DTOs.Models;
 using Common.DTOs.Responses;
 using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
@@ -31,7 +26,7 @@ namespace DataLayer.Repositories
                 transaction: _transaction, commandType: CommandType.StoredProcedure);
 
         public Task UpdateEmployeeSalesAsync(Guid id, int productsSold)
-        => _connection.ExecuteAsync(StoredProcedures.UpdateEmployeesSales, new {id, productsSold},
+        => _connection.ExecuteAsync(StoredProcedures.UpdateEmployeesSales, new { id, productsSold },
                 transaction: _transaction, commandType: CommandType.StoredProcedure);
     }
 }

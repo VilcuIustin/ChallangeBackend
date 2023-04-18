@@ -1,14 +1,11 @@
-﻿using BCrypt.Net;
-using Common.DTOs;
+﻿using Common.DTOs;
 using Common.DTOs.Models;
 using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 using DataLayer;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 using System.Text;
 
@@ -70,7 +67,7 @@ namespace BusinessLayer.Services
         {
             var userData = await _unitOfWork.userRepository.GetUserForLogin(loginData.Email);
 
-            if(userData == null)
+            if (userData == null)
             {
                 return new()
                 {
@@ -78,7 +75,7 @@ namespace BusinessLayer.Services
                 };
             }
 
-            if(userData.Password == null)
+            if (userData.Password == null)
             {
                 return new()
                 {
@@ -96,7 +93,7 @@ namespace BusinessLayer.Services
 
             var response = GenerateTokens(userData);
             return new(response);
-            
+
         }
 
         private LoginResponse GenerateTokens(UserDetailsLogin userData)

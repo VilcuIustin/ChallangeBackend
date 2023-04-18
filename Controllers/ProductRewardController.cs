@@ -5,7 +5,6 @@ using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 using Common.Enums;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChallangeBackend.Controllers
@@ -27,7 +26,7 @@ namespace ChallangeBackend.Controllers
             => SetStatusCode(await _productReward.CreateProductRewardAsync(reward));
 
         [HttpGet]
-        public async Task<BaseResponse<List<ProductRewardsResponse>>> GetProductRewardsAsync([FromQuery]Guid productId)
+        public async Task<BaseResponse<List<ProductRewardsResponse>>> GetProductRewardsAsync([FromQuery] Guid productId)
             => SetStatusCode(await _productReward.GetProductRewardsAsync(productId));
 
         [HttpPatch]

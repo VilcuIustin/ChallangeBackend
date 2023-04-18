@@ -1,15 +1,4 @@
-﻿using BusinessLayer.Services;
-using Common.DTOs.Models;
-using Common.DTOs.Requests;
-using DataLayer;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
     public class ProductServicesTests
     {

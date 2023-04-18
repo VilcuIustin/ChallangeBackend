@@ -3,11 +3,6 @@ using Common.DTOs.Models;
 using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
@@ -97,7 +92,7 @@ namespace BusinessLayer.Services
                     Error = "Something went wrong"
                 };
             }
-           
+
         }
 
         public async Task<BaseResponse<bool>> UpdateEmployeesSalesAsync(UpdateEmployeeSalesRequest saleDetails)
@@ -106,7 +101,7 @@ namespace BusinessLayer.Services
             {
                 var salesExist = await _unitOfWork.EmployeeSalesRepository.GetEmployeesSalesByIdAsync(saleDetails.Id);
 
-                if(!salesExist)
+                if (!salesExist)
                     return new()
                     {
                         Error = "Sale does not exist"

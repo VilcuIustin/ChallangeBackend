@@ -1,13 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using Dapper;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataLayer.Repositories;
+using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
-using System.Data.Common;
-using DataLayer.Repositories;
 
 namespace DataLayer
 {

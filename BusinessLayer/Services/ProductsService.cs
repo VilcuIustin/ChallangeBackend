@@ -3,11 +3,6 @@ using Common.DTOs.Models;
 using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
@@ -44,7 +39,7 @@ namespace BusinessLayer.Services
                 await _unitOfWork.SaveChangesAsync();
                 return new BaseResponse<bool>(true);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await _unitOfWork.RollbackAsync();
                 return new BaseResponse<bool> { Error = "Something went wrong" };
@@ -63,7 +58,7 @@ namespace BusinessLayer.Services
                 var response = await _unitOfWork.ProductsRepository.GetProductsPaginated(pagination);
                 return new(response);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new BaseResponse<List<MinimalProductResponse>>
                 {

@@ -2,11 +2,6 @@
 using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
@@ -25,7 +20,7 @@ namespace BusinessLayer.Services
                 var response = await _unitOfWork.EmployeesRepository.GetEmployeesPaginatedAsync(pagination);
                 return new(response);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new()
                 {

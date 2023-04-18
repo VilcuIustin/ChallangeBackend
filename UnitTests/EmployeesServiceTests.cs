@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
     public class EmployeesServiceTests
     {
@@ -26,7 +20,7 @@ namespace UnitTests
                 .ReturnsAsync(new List<MinimalEmployeeDetails>());
 
             var response = await _sut.GetEmployeesPaginatedAsync(request);
-            
+
             Assert.NotNull(response.Content);
             Assert.Null(response.Error);
 

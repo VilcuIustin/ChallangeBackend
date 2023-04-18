@@ -1,11 +1,6 @@
 ﻿using Common.DTOs;
 using Common.DTOs.Responses;
 using DataLayer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
@@ -22,7 +17,7 @@ namespace BusinessLayer.Services
             {
                 var dateId = await _unitOfWork.DateRepository.GetDateIdByMonthAndYear(month, year);
 
-                if(dateId == null)
+                if (dateId == null)
                 {
                     return new()
                     {
@@ -31,7 +26,8 @@ namespace BusinessLayer.Services
                 }
 
                 return new(await _unitOfWork.RemunerationRepository.GetRemunerationByDateAsync(dateId.Value));
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return new()
                 {

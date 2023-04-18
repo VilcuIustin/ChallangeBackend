@@ -1,7 +1,6 @@
 ﻿using Common.DTOs;
 using Common.DTOs.Requests;
 using Common.DTOs.Responses;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessLayer.Services
 {

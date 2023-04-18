@@ -1,5 +1,4 @@
 ﻿using Common.DTOs.Models;
-using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 
 namespace DataLayer.Repositories

@@ -1,12 +1,11 @@
 ﻿using BusinessLayer.Services;
-using Common.DTOs.Responses;
-using Common.DTOs;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Common.DTOs.Requests;
-using Microsoft.AspNetCore.Authorization;
 using ChallangeBackend.Attributes;
+using Common.DTOs;
+using Common.DTOs.Requests;
+using Common.DTOs.Responses;
 using Common.Enums;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ChallangeBackend.Controllers
 {
@@ -24,7 +23,7 @@ namespace ChallangeBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<BaseResponse<List<EmployeeSaleResponse>>> GetEmployeesSalesByDateAsync([FromQuery] Guid employeeId, [FromQuery] int month,[FromQuery] int year)
+        public async Task<BaseResponse<List<EmployeeSaleResponse>>> GetEmployeesSalesByDateAsync([FromQuery] Guid employeeId, [FromQuery] int month, [FromQuery] int year)
             => SetStatusCode(await _employeesSalesService.GetEmployeesSalesByDateAsync(employeeId, month, year));
 
         [HttpPost]

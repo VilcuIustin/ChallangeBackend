@@ -1,13 +1,7 @@
-﻿using Common.DTOs.Models;
-using Common.DTOs.Responses;
+﻿using Common.DTOs.Responses;
 using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
@@ -30,8 +24,8 @@ namespace DataLayer.Repositories
                     });
                     return product;
                 },
-                new {dateId}, splitOn: "id,productId,RewardAmount",
-                transaction:_transaction, commandType: CommandType.StoredProcedure);
+                new { dateId }, splitOn: "id,productId,RewardAmount",
+                transaction: _transaction, commandType: CommandType.StoredProcedure);
 
             return remuneration.GroupBy(r => r.ProductId)
                 .Select(r =>

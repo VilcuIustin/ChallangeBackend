@@ -1,9 +1,4 @@
-﻿
-using Common.DTOs.Models;
-using Common.DTOs.Requests;
-using Common.DTOs.Responses;
-
-namespace UnitTests
+﻿namespace UnitTests
 {
     public class ProductRewardsServiceTests
     {
@@ -181,7 +176,7 @@ namespace UnitTests
             _unitOfWorkMock.Setup(u => u.ProductRewardsRepository.GetProductRewardsAsync(productId, It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(new Dictionary<(int, int), ProductRewardsResponse>
                 {
-                    { (now.Month, now.Year), 
+                    { (now.Month, now.Year),
                         new ()
                         {
                             Reward = 50,

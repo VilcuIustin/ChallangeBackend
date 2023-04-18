@@ -5,7 +5,6 @@ using Common.DTOs.Requests;
 using Common.DTOs.Responses;
 using Common.Enums;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ChallangeBackend.Controllers

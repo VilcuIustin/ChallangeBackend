@@ -4,7 +4,6 @@ using Common.DTOs;
 using Common.DTOs.Responses;
 using Common.Enums;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -26,7 +25,7 @@ namespace ChallangeBackend.Controllers
 
         [HttpGet]
         public async Task<BaseResponse<List<SalesByProductResponse>>>
-            GetRemunerationByDateAsync([Range(1,12)]int month, [Range(2000,2400)]int year)
+            GetRemunerationByDateAsync([Range(1, 12)] int month, [Range(2000, 2400)] int year)
             => SetStatusCode(await _remunerationService.GetRemunerationByDateAsync(month, year));
 
     }

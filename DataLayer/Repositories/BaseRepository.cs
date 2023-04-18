@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace DataLayer.Repositories
 {
@@ -11,7 +6,7 @@ namespace DataLayer.Repositories
     {
         internal readonly SqlConnection _connection;
         internal readonly SqlTransaction _transaction;
-        public BaseRepository(SqlTransaction transaction) 
+        public BaseRepository(SqlTransaction transaction)
         {
             _transaction = transaction;
             _connection = _transaction.Connection;

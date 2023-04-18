@@ -1,10 +1,5 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
@@ -12,6 +7,6 @@ namespace DataLayer.Repositories
     {
         public RolesRepository(SqlTransaction transaction) : base(transaction) { }
         public Task<Guid> GetRoleIdByName(string role)
-            => _connection.QueryFirstAsync<Guid>(StoredProcedures.GetRoleIdByName, new { name= role }, transaction: _transaction, commandType: System.Data.CommandType.StoredProcedure);
+            => _connection.QueryFirstAsync<Guid>(StoredProcedures.GetRoleIdByName, new { name = role }, transaction: _transaction, commandType: System.Data.CommandType.StoredProcedure);
     }
 }

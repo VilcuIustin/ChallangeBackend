@@ -1,8 +1,6 @@
 ﻿using Common.DTOs.Models;
 using Common.DTOs.Responses;
 using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -20,7 +18,8 @@ namespace DataLayer.Repositories
 
         public async Task<Dictionary<(int, int), ProductRewardsResponse>> GetProductRewardsAsync(Guid productId, int startMonth, int startYear, int endMonth, int endYear)
        => (await _connection.QueryAsync<ProductRewardsResponse>(StoredProcedures.GetProductRewards,
-                new { 
+                new
+                {
                     productId = productId,
                     startMonth = startMonth,
                     startYear = startYear,
@@ -39,6 +38,6 @@ namespace DataLayer.Repositories
 
         public Task UpdateRewardAmountAsync(Guid id, int reward)
         => _connection.ExecuteAsync(StoredProcedures.UpdateProductReward,
-                new {id, reward}, transaction: _transaction, commandType: CommandType.StoredProcedure);
+                new { id, reward }, transaction: _transaction, commandType: CommandType.StoredProcedure);
     }
 }

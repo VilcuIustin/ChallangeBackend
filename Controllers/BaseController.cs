@@ -8,10 +8,10 @@ namespace ChallangeBackend.Controllers
     {
         public BaseResponse<T> SetStatusCode<T>(BaseResponse<T> response)
         {
-            if(response.Error != null)
+            if (response.Error != null)
                 Response.StatusCode = 400;
 
-            if(response.StatusCode != 200)
+            if (response.StatusCode != 200)
                 Response.StatusCode = response.StatusCode;
 
             return response;
