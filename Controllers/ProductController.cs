@@ -1,7 +1,10 @@
 ﻿using BusinessLayer.Services;
+using ChallangeBackend.Attributes;
 using Common.DTOs;
 using Common.DTOs.Requests;
 using Common.DTOs.Responses;
+using Common.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +12,9 @@ namespace ChallangeBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    [Authorize]
+    [AllowRole(RoleType.Admin | RoleType.Manager)]
+    public class ProductController : BaseController
     {
 
         private readonly IProductsService _productsService;
@@ -19,15 +24,15 @@ namespace ChallangeBackend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponse<bool>>> CreateProductAsync(CreateProductRequest productDetails)
-            => await _productsService.CreateProductAsync(productDetails);
+        public async Task<BaseResponse<bool>> CreateProductAsync(CreateProductRequest productDetails)
+            => SetStatusCode(await _productsService.CreateProductAsync(productDetails));
 
         [HttpPost("paginated")]
-        public async Task<ActionResult<BaseResponse<List<MinimalProductResponse>>>> GetProductsPaginatedAsync(ProductsPaginatedReques pagination)
-            => await _productsService.GetProductsPaginatedAsync(pagination);
+        public async Task<BaseResponse<List<MinimalProductResponse>>> GetProductsPaginatedAsync(ProductsPaginatedReques pagination)
+            => SetStatusCode(await _productsService.GetProductsPaginatedAsync(pagination));
 
         [HttpGet("all")]
-        public async Task<ActionResult<BaseResponse<List<MinimalProductResponse>>>> GetAllProductsAsync()
-            => await GetProductsPaginatedAsync(new ProductsPaginatedReques { Size = int.MaxValue });
+        public async Task<BaseResponse<List<MinimalProductResponse>>> GetAllProductsAsync()
+            => SetStatusCode(await GetProductsPaginatedAsync(new ProductsPaginatedReques { Size = int.MaxValue }));
     }
 }

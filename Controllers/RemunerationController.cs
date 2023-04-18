@@ -1,6 +1,9 @@
 ﻿using BusinessLayer.Services;
+using ChallangeBackend.Attributes;
 using Common.DTOs;
 using Common.DTOs.Responses;
+using Common.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +12,9 @@ namespace ChallangeBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RemunerationController : ControllerBase
+    [Authorize]
+    [AllowRole(RoleType.Admin | RoleType.Manager)]
+    public class RemunerationController : BaseController
     {
 
         private readonly IRemunerationService _remunerationService;
@@ -20,9 +25,9 @@ namespace ChallangeBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<List<SalesByProductResponse>>>>
+        public async Task<BaseResponse<List<SalesByProductResponse>>>
             GetRemunerationByDateAsync([Range(1,12)]int month, [Range(2000,2400)]int year)
-            => await _remunerationService.GetRemunerationByDateAsync(month, year);
+            => SetStatusCode(await _remunerationService.GetRemunerationByDateAsync(month, year));
 
     }
 }

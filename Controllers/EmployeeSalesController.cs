@@ -4,12 +4,17 @@ using Common.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Common.DTOs.Requests;
+using Microsoft.AspNetCore.Authorization;
+using ChallangeBackend.Attributes;
+using Common.Enums;
 
 namespace ChallangeBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeSalesController : ControllerBase
+    [Authorize]
+    [AllowRole(RoleType.Admin | RoleType.Manager)]
+    public class EmployeeSalesController : BaseController
     {
         private readonly IEmployeesSalesService _employeesSalesService;
 
@@ -19,15 +24,15 @@ namespace ChallangeBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<BaseResponse<List<EmployeeSaleResponse>>>> GetEmployeesSalesByDateAsync([FromQuery] Guid employeeId, [FromQuery] int month,[FromQuery] int year)
-            => await _employeesSalesService.GetEmployeesSalesByDateAsync(employeeId, month, year);
+        public async Task<BaseResponse<List<EmployeeSaleResponse>>> GetEmployeesSalesByDateAsync([FromQuery] Guid employeeId, [FromQuery] int month,[FromQuery] int year)
+            => SetStatusCode(await _employeesSalesService.GetEmployeesSalesByDateAsync(employeeId, month, year));
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponse<bool>>> CreateEmployteeSalesAsync(CreateEmployeeSalesRequest salesData)
-            => await _employeesSalesService.CreateEmployeeSaleAsync(salesData);
+        public async Task<BaseResponse<bool>> CreateEmployteeSalesAsync(CreateEmployeeSalesRequest salesData)
+            => SetStatusCode(await _employeesSalesService.CreateEmployeeSaleAsync(salesData));
 
         [HttpPatch]
-        public async Task<ActionResult<BaseResponse<bool>>> UpdateEmployeesSalesAsync(UpdateEmployeeSalesRequest saleDetails)
-            => await _employeesSalesService.UpdateEmployeesSalesAsync(saleDetails);
+        public async Task<BaseResponse<bool>> UpdateEmployeesSalesAsync(UpdateEmployeeSalesRequest saleDetails)
+            => SetStatusCode(await _employeesSalesService.UpdateEmployeesSalesAsync(saleDetails));
     }
 }

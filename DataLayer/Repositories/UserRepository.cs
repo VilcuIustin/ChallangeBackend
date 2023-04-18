@@ -32,9 +32,15 @@ namespace DataLayer.Repositories
                     userDetails.Roles.Add(roleDetails);
                     return userDetails;
                 },
-                 new { email = email }, splitOn: "",
+                 new { email = email }, splitOn: "id, roleId",
                  transaction: _transaction, commandType: CommandType.StoredProcedure);
-            return response?.FirstOrDefault();
+            return response?.GroupBy(u => u.Id)
+                .Select(u =>
+                {
+                    var user = u.First();
+                    user.Roles = u.SelectMany(us => us.Roles).ToList();
+                    return user;
+                }).FirstOrDefault();
         }
     }
 }

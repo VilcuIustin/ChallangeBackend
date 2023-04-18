@@ -1,4 +1,5 @@
 using BusinessLayer.MethodExtensions;
+using ChallangeBackend.MethodExtensions;
 using DataLayer.MethodExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddJWTConfiguration(builder.Configuration);
+builder.Services.AddSwaggerConfiguration();
 builder.Services.AddDataLayer();
 builder.Services.AddBusinessLayer();
 var app = builder.Build();
